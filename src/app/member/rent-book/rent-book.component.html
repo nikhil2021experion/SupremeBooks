@@ -1,0 +1,103 @@
+<header>
+    <nav>
+    <div class="container">
+        <h5>welcome : {{ loggedUser |uppercase }}</h5>
+    </div>
+    
+        <ul class="nav">
+            <li class="nav-item" style="margin-right: 20px; margin-left: 50%;">
+                <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
+                <button class="btn btn-sm btn-warning" routerLink="/member">Go Back</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-sm btn-danger" (click)="logOut()">LogOut</button>
+            </li>
+
+        </ul>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+
+<!-- template driven -->
+
+<!-- (ngSubmit)="onSubmit(form)" -->
+<form name="rentform" #form="ngForm" autocomplete="off" style="padding: 30px;" (ngSubmit)="onSubmit(form)" >
+    <!-- employee ID  making this as hidden-->
+    <input type="hidden" name="RentId" [(ngModel)]="libraryService.formDataOne.RentId">
+<!-- BookId -->
+    <!-- <div class="form-group">
+        <label>Employee ID : </label>
+        <input type="text" name="EmployeeId"  #EmployeeName="ngModel" [(ngModel)]="employeeService.formData.EmployeeId" class="form-control" placeholder="Enter Employee Id"  required 
+        [ngClass]="{'is-invalid': EmployeeId.touched && EmployeeId.invalid}">
+         validation -->
+        <!-- <div class="validation-errors" *ngIf="EmployeeId.touched && EmployeeId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="EmployeeId.errors.required">
+                Employee Id is required!
+            </div>
+        </div>
+    </div>  -->
+
+    <!-- Member Name -->
+    <div class="form-group">
+        <label>Member Name : </label>
+        <input type="number" name="MemberName"  #MemberName="ngModel" [(ngModel)]="libraryService.formData.MemberName" class="form-control" placeholder="Enter full name" minlength="6" maxlength="25" required 
+        [ngClass]="{'is-invalid': MemberName.touched && MemberName.invalid}">
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="MemberName.touched && MemberName.invalid" style="color: red; text-align: left;">
+            <div *ngIf="MemberName.errors.required">
+                Member Name is required!
+            </div>
+        </div>
+    </div>
+    
+    <!-- bookname dropdown -->
+    
+    <div class="form-group">
+        <label>Book Name : </label>
+        <input type="text" name="BookId"  #BookId="ngModel" [(ngModel)]="libraryService.formData.BookName" class="form-control"  minlength="6" maxlength="25" required 
+        [ngClass]="{'is-invalid': BookId.touched && BookId.invalid}">
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="BookId.touched && BookId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="BookId.errors.required">
+                Book Name is required!
+            </div>
+        </div>
+    </div>
+    
+    
+    <!-- Created Date-->
+    <!-- <div class="form-group">
+        <label>Book Taken Date: </label> 
+        <input type="hidden" type="date" name="BookTakenDate"  #BookTakenDate="ngModel" [(ngModel)]="libraryService.formDataOne.BookTakenDate" class="form-control"   
+        [ngClass]="{'is-invalid': BookTakenDate.touched && BookTakenDate.invalid}" required >
+        validation
+        <div class="validation-errors" *ngIf="BookTakenDate.touched && BookTakenDate.invalid" style="color: red; text-align: left;">
+            <div *ngIf="BookTakenDate.errors.required">
+                Book Taken Date is required!
+            </div>
+        </div>
+    </div> -->
+
+    
+    <!-- IsActive -->
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">In Active</label>
+            <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel" [(ngModel)]="libraryService.formData.IsActive" class="form-check-input" > 
+            
+        </div>
+    </div>
+    <!-- submit -->
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-lg btn-primary form-control" [disabled]="!(form.valid && form.dirty)">Submit</button>
+    </div>
+</form>
+

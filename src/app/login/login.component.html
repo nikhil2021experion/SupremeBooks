@@ -1,0 +1,61 @@
+<div class="container" style="padding: 10px;  width: 40%; background-color: rgb(255, 255, 255); justify-content: center;">
+    <div>
+        <div class="container" style="justify-content: center; color: rgb(110, 179, 41); font-family:cursive;">
+            <h2>Login here..</h2>
+        </div>
+
+        <hr>
+        <form [formGroup]="loginForm" (ngSubmit)="loginCredentials()">
+            <!-- user name control -->
+            <div class="form-group">
+                <p>
+                    <label for="MemberName" class="form-label">User Name : </label>
+                    <input type="text" placeholder="enter username" formControlName="MemberName" name="MemberName"
+                        class="form-control" minlength="4"
+                        [ngClass]="{'is-invalid': formControls.MemberName.touched && formControls.MemberName.invalid}" required
+                        autocomplete="off">
+
+                </p>
+
+            </div>
+
+            <!-- username validation -->
+            <div *ngIf="isSubmitted && formControls.MemberName.errors">
+                <div *ngIf="formControls.MemberName.errors" style="color: red; text-align: left;">
+                    User Name is required!
+                </div>
+            </div>
+
+
+
+
+            <!-- password -->
+            <div class="form-group">
+                <p>
+                    <label for="Password" class="form-label">Password : </label>
+                    <input type="password" placeholder="enter password" formControlName="Password" class="form-control"
+                        name="Password" minlength="5"
+                        [ngClass]="{'is-invalid': formControls.Password.touched && formControls.Password.invalid}"
+                        required>
+
+                </p>
+            </div>
+            <!-- password validation -->
+            <div *ngIf="isSubmitted && formControls.Password.errors">
+                <div *ngIf="formControls.Password.errors" style="color: red; text-align: left;">
+                    password is required!
+                </div>
+            </div>
+
+            <!-- button -->
+            <div class="input-group" style="justify-content: center;">
+
+                <button class="btn btn-primary">Login</button>
+            </div>
+            <div *ngIf="error" style="color: red; text-align: left;">
+
+                {{error}}
+            </div>
+        </form>
+    </div>
+</div>

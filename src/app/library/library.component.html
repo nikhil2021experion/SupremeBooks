@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+
+
+            <header>
+                <div class="container">
+                    <!-- <h5>welcome : {{ loggedUser }}</h5> -->
+                </div>
+                <nav class="nav" style="display:-webkit-inline-flex; margin-left: 70%; padding: 6px;">
+                    <ul class="nav">
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/">Go Back</button>
+                        </li>
+                        
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/view">View</button>
+                        </li>
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/report">Par rolll</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/reports">Reports</button>
+                        </li>
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" (click)="logOut()">LogOut</a> -->
+                            <!-- <button class="btn btn-sm btn-danger" (click)="logOut()">LogOut</button> -->
+                        </li>
+
+                    </ul>
+                </nav>
+            </header>
+
+
+            <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter">
+            <!-- [(NgModel)]="filter" -->
+
+        </div>
+
+        <!-- [] square bracket is for property binding
+         () parenthesis is for event binding
+         ([]) event and property is for banana box  --([ngModel]) -->
+        <a [routerLink]="" class="btn  btn-outline-success text-dark"
+            style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;
+            background-color:rgb(198, 233, 205) ;"
+            onclick="alert('Bhoom!  There you are');">View</a>
+    </div>
+    <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
+        <thead>
+            <tr>
+                
+                <th>BookId</th>
+                <th>Book Name</th>  
+                <th>Publication Name</th>             
+                <th>Genre Name</th>
+                <th>Author Name</th>
+                
+                <!-- <th>Action</th> -->
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let lb of libraryService.lists |filter: filter  | paginate: {itemsPerPage :2, currentPage: page}">
+                <td>{{lb.BookId}}</td>
+                <td>{{lb.BookName}}</td>
+                <td>{{lb.AuthorName}}</td>
+                <td>{{lb.GenreName}}</td>
+                <td>{{lb.PublicationName}}</td>
+                
+
+                <td>
+                    <!-- button -->
+                    <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Issue Book</button>
+                    &nbsp;
+                    <!-- <button class="btn btn-sm btn-danger" (click)="deleteUser(usr.UserId)">Delete</button> -->
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <!-- pagination -->
+        <pagination-controls (pageChange)="page =($event)"></pagination-controls>
+    </footer>
+</div>
+

@@ -1,0 +1,135 @@
+<div class="container">
+    <div class="header">
+        <div class="form-control">
+
+
+            <header>
+                <div class="container">
+                    <h5>welcome : {{ loggedUser |uppercase }}</h5>
+                </div>
+                <nav class="nav" style="display:-webkit-inline-flex;  margin-left: 70%; padding: 6px;">
+                    <ul class="nav">
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/admin">Go Back</button>
+                        </li>
+
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/view">View</button>
+                        </li>
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" routerLink="/report">Par rolll</a> -->
+                            <button class="btn btn-sm btn-warning" routerLink="/reports">Reports</button>
+                        </li>
+                        <li class="nav-item" style="margin-right: 20px;">
+                            <!-- <a class="nav-link" href="#" (click)="logOut()">LogOut</a> -->
+                            <button class="btn btn-sm btn-danger" (click)="logOut()">LogOut</button>
+                        </li>
+
+                    </ul>
+                </nav>
+            </header>
+
+
+            <!-- <input class="form-control" type="text" placeholder="search" [(ngModel)]="filter"> -->
+            <!-- [(NgModel)]="filter" -->
+
+        </div>
+
+
+
+        <!-- [] square bracket is for property binding
+         () parenthesis is for event binding
+         ([]) event and property is for banana box  --([ngModel]) -->
+        <a [routerLink]="" class="btn  btn-outline-success text-dark" style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;
+            background-color:rgb(198, 233, 205) ;" onclick="alert('Bhoom!  There you are');">View</a>
+    </div>
+    <h2>Report For List Of All Books With Thier Rent Prices</h2>
+    <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
+        <thead>
+            <tr>
+
+                <th>BookId</th>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>Genre Name</th>
+                <th>Publication Name</th>
+                <th>Price</th>
+                <th>RentPrice</th>
+                <!-- <th>Action</th> -->
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr
+                *ngFor="let lb of libraryService.lists |filter: filter  | paginate: {itemsPerPage :4, currentPage: page}">
+                <td>{{lb.BookId}}</td>
+                <td>{{lb.BookName}}</td>
+                <td>{{lb.AuthorName}}</td>
+                <td>{{lb.GenreName}}</td>
+                <td>{{lb.PublicationName}}</td>
+                <td>{{lb.Price}}</td>
+                <td>{{lb.RentPrice}}</td>
+
+                <!-- <td> -->
+                <!-- button -->
+                <!-- <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Edit</button>
+                    &nbsp;
+                    <button class="btn btn-sm btn-danger" (click)="deleteUser(usr.UserId)">Delete</button>
+                </td> -->
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <!-- pagination -->
+        <pagination-controls (pageChange)="page =($event)"></pagination-controls>
+    </footer>
+
+
+
+    <div>
+        <h2> Report For Members With Fine</h2>
+        <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
+            <thead>
+                <tr>
+    
+                    <th>Member ID</th>
+                    <th>Member Name</th>
+                    <th>Mobile</th>
+                    <th>Address</th>
+                    <th>Book Name</th>
+                    <th>Price</th>
+                    <th>RentPrice</th>
+                    <th>Fine Amount</th>
+                    <!-- <th>Action</th> -->
+    
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let mwf of libraryService.fine |filter: filterTwo  | paginate: {itemsPerPage :4, currentPage: pageTwo}">
+                    <td>{{mwf.MemberId}}</td>
+                    <td>{{mwf.MemberName}}</td>
+                    <td>{{mwf.Mobile}}</td>
+                    <td>{{mwf.Address}}</td>
+                    <td>{{mwf.BookName}}</td>
+                    <td>{{mwf.Price}}</td>
+                    <td>{{mwf.RentPrice}}</td>
+                    <td>{{mwf.FineAmount}}</td>
+    
+                    <!-- <td> -->
+                    <!-- button -->
+                    <!-- <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Edit</button>
+                        &nbsp;
+                        <button class="btn btn-sm btn-danger" (click)="deleteUser(usr.UserId)">Delete</button>
+                    </td> -->
+                </tr>
+            </tbody>
+        </table>
+        <!-- <footer>
+             pagination 
+             <pagination-controls (pageChange)="page =($event)"></pagination-controls>
+        </footer>  -->
+    </div>
+</div>

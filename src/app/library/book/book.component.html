@@ -1,0 +1,131 @@
+<header>
+    <nav>
+    <div class="container">
+        <h5>welcome : {{ loggedUser |uppercase }}</h5>
+    </div>
+    <div class="container" style=" padding:7px"><h3>Add New Book</h3></div>
+    <div class="nav" style="display:inline; margin-left: 50%; padding: 6px;">
+        <ul class="nav" >
+            <li class="nav-item" style="margin-right: 20px;">
+                <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
+                <button class="btn btn-sm btn-warning" routerLink="/admin">Go Back</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-sm btn-danger" (click)="logOut()">LogOut</button>
+            </li>
+
+        </ul>
+    </div>
+    </nav>
+</header>
+
+
+
+
+
+
+
+
+
+<!-- template driven -->
+
+<!-- (ngSubmit)="onSubmit(form)" -->
+<form name="bookform" #form="ngForm" autocomplete="off" style="padding: 30px;" (ngSubmit)="onSubmit(form)" >
+    <!-- employee ID  making this as hidden-->
+    <input type="hidden" name="BookId" [(ngModel)]="libraryService.formData.BookId">
+<!-- BookId -->
+    <!-- <div class="form-group">
+        <label>Employee ID : </label>
+        <input type="text" name="EmployeeId"  #EmployeeName="ngModel" [(ngModel)]="employeeService.formData.EmployeeId" class="form-control" placeholder="Enter Employee Id"  required 
+        [ngClass]="{'is-invalid': EmployeeId.touched && EmployeeId.invalid}">
+         validation -->
+        <!-- <div class="validation-errors" *ngIf="EmployeeId.touched && EmployeeId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="EmployeeId.errors.required">
+                Employee Id is required!
+            </div>
+        </div>
+    </div>  -->
+
+    <!-- Book Name -->
+    <div class="form-group">
+        <label>Book Name : </label>
+        <input type="text" name="BookName"  #BookName="ngModel" [(ngModel)]="libraryService.formData.BookName" class="form-control" placeholder="Enter full name" minlength="6" maxlength="25" required 
+        [ngClass]="{'is-invalid': BookName.touched && BookName.invalid}">
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="BookName.touched && BookName.invalid" style="color: red; text-align: left;">
+            <div *ngIf="BookName.errors.required">
+                Book Name is required!
+            </div>
+        </div>
+    </div>
+    <!-- publication dropdown -->
+    <div class="form-group">
+        <label>Publication :</label>
+        <select name="PublicationId" id="PublicationId" class="form-control" #PublicationId="ngModel" [(ngModel)]="libraryService.formData.PublicationId" placeholder="select publication" >
+            <option value=0 disabled></option>
+            <option *ngFor="let pc of libraryService.publications" value="{{pc.PublicationId}}">{{pc.PublicationName}}</option>            
+        </select>
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="PublicationId.touched && PublicationId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="PublicationId.errors.required">
+                Publication is required!
+            </div>
+        </div>
+    </div>
+    <!-- genre dropdown -->
+    <div class="form-group">
+        <label>Genre :</label>
+        <select name="GenreId" id="GenreId" class="form-control" #GenreId="ngModel" [(ngModel)]="libraryService.formData.GenreId" placeholder="Select genre" >
+            <option value=0 disabled></option>
+            <option *ngFor="let gen of libraryService.genres" value="{{gen.GenreId}}">{{gen.GenreName}}</option>            
+        </select>
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="GenreId.touched && GenreId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="GenreId.errors.required">
+                Genre is required!
+            </div>
+        </div>
+    </div>
+    
+    <!-- author dropdown -->
+    <div class="form-group">
+        <label>Author :</label>
+        <select name="AuthorId" id="AuthorId" class="form-control" #AuthorId="ngModel" [(ngModel)]="libraryService.formData.AuthorId" placeholder="Select Author" >
+            <option value=0 disabled></option>
+            <option *ngFor="let aut of libraryService.authors" value="{{aut.AuthorId}}">{{aut.AuthorName}}</option>            
+        </select>
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="AuthorId.touched && AuthorId.invalid" style="color: red; text-align: left;">
+            <div *ngIf="AuthorId.errors.required">
+                Author is required!
+            </div>
+        </div>
+    </div>
+
+    <!-- price -->
+    <div class="form-group">
+        <label>Book Price : </label>
+        <input type="number" name="Price"  #Price="ngModel" [(ngModel)]="libraryService.formData.Price" class="form-control" 
+        placeholder="Enter Price " minlength="2"  required 
+        [ngClass]="{'is-invalid': Price.touched && Price.invalid}">
+        <!-- validation -->
+        <div class="validation-errors" *ngIf="Price.touched && Price.invalid" style="color: red; text-align: left;">
+            <div *ngIf="Price.errors.required">
+                Price is required!
+            </div>
+        </div>
+    </div>
+    <!-- IsActive -->
+    <div class="form-group">
+        <div class="form-check">
+            <label class="form-check-label">In Service</label>
+            <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel" [(ngModel)]="libraryService.formData.IsActive" class="form-check-input" > 
+            
+        </div>
+    </div>
+    <!-- submit -->
+    <br>
+    <div class="form-group">
+        <button type="submit" class="btn btn-lg btn-primary form-control" [disabled]="!(form.valid && form.dirty)">Submit</button>
+    </div>
+</form>
