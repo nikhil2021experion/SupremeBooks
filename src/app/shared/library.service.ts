@@ -124,6 +124,12 @@ export class LibraryService {
     return this.httpClient.put(environment.apiUrl+ "/api/Books",books);
   }
 
+  
+  //delete Book
+  deleteBook(id:number){
+    return this.httpClient.delete(environment.apiUrl+ "/api/Books/"+id);
+  }
+
 
 
   //get rent by id
@@ -134,7 +140,7 @@ export class LibraryService {
   //insert rent
   insertRent(rents: Rent): Observable<any>{
     console.log(" book id: " +rents.BookId);
-    console.log(" member id: " +rents.MemberName);
+    console.log(" member id: " +rents.MemberId);
     console.log(" rent id: " +rents.RentId);
     return this.httpClient.post(environment.apiUrl+ "/api/Rent",rents);
   }

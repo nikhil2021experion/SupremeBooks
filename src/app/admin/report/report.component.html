@@ -14,14 +14,7 @@
                             <button class="btn btn-sm btn-warning" routerLink="/admin">Go Back</button>
                         </li>
 
-                        <li class="nav-item" style="margin-right: 20px;">
-                            <!-- <a class="nav-link" href="#" routerLink="/attendance">Attendance</a> -->
-                            <button class="btn btn-sm btn-warning" routerLink="/view">View</button>
-                        </li>
-                        <li class="nav-item" style="margin-right: 20px;">
-                            <!-- <a class="nav-link" href="#" routerLink="/report">Par rolll</a> -->
-                            <button class="btn btn-sm btn-warning" routerLink="/reports">Reports</button>
-                        </li>
+                        
                         <li class="nav-item" style="margin-right: 20px;">
                             <!-- <a class="nav-link" href="#" (click)="logOut()">LogOut</a> -->
                             <button class="btn btn-sm btn-danger" (click)="logOut()">LogOut</button>
@@ -45,55 +38,54 @@
         <a [routerLink]="" class="btn  btn-outline-success text-dark" style="float: right; margin-top: 10px; margin-right: 0px; margin-bottom: 10px;
             background-color:rgb(198, 233, 205) ;" onclick="alert('Bhoom!  There you are');">View</a>
     </div>
-    <h2>Report For List Of All Books With Thier Rent Prices</h2>
-    <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
-        <thead>
-            <tr>
+    <div>
+        <h2>Report For List Of All Books With Thier Rent Prices</h2>
+        <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
+            <thead>
+                <tr>
 
-                <th>BookId</th>
-                <th>Book Name</th>
-                <th>Author Name</th>
-                <th>Genre Name</th>
-                <th>Publication Name</th>
-                <th>Price</th>
-                <th>RentPrice</th>
-                <!-- <th>Action</th> -->
+                    <th>BookId</th>
+                    <th>Book Name</th>
+                    <th>Author Name</th>
+                    <th>Genre Name</th>
+                    <th>Publication Name</th>
+                    <th>Price</th>
+                    <th>RentPrice</th>
+                    <!-- <th>Action</th> -->
 
-            </tr>
-        </thead>
-        <tbody>
-            <tr
-                *ngFor="let lb of libraryService.lists |filter: filter  | paginate: {itemsPerPage :4, currentPage: page}">
-                <td>{{lb.BookId}}</td>
-                <td>{{lb.BookName}}</td>
-                <td>{{lb.AuthorName}}</td>
-                <td>{{lb.GenreName}}</td>
-                <td>{{lb.PublicationName}}</td>
-                <td>{{lb.Price}}</td>
-                <td>{{lb.RentPrice}}</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr
+                    *ngFor="let lb of libraryService.lists |filter: filter  | paginate: {itemsPerPage :4, currentPage: page}">
+                    <td>{{lb.BookId}}</td>
+                    <td>{{lb.BookName}}</td>
+                    <td>{{lb.AuthorName}}</td>
+                    <td>{{lb.GenreName}}</td>
+                    <td>{{lb.PublicationName}}</td>
+                    <td>{{lb.Price}}</td>
+                    <td>{{lb.RentPrice}}</td>
 
-                <!-- <td> -->
-                <!-- button -->
-                <!-- <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Edit</button>
+                    <!-- <td> -->
+                    <!-- button -->
+                    <!-- <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Edit</button>
                     &nbsp;
                     <button class="btn btn-sm btn-danger" (click)="deleteUser(usr.UserId)">Delete</button>
                 </td> -->
-            </tr>
-        </tbody>
-    </table>
-    <footer>
-        <!-- pagination -->
-        <pagination-controls (pageChange)="page =($event)"></pagination-controls>
-    </footer>
-
-
-
+                </tr>
+            </tbody>
+        </table>
+        <footer>
+            <!-- pagination -->
+            <pagination-controls (pageChange)="page =($event)"></pagination-controls>
+        </footer>
+    </div>
     <div>
         <h2> Report For Members With Fine</h2>
         <table class="table table-bordered table-striped " style="background-color:rgb(198, 233, 205) ;">
             <thead>
                 <tr>
-    
+
                     <th>Member ID</th>
                     <th>Member Name</th>
                     <th>Mobile</th>
@@ -103,7 +95,7 @@
                     <th>RentPrice</th>
                     <th>Fine Amount</th>
                     <!-- <th>Action</th> -->
-    
+
                 </tr>
             </thead>
             <tbody>
@@ -117,7 +109,7 @@
                     <td>{{mwf.Price}}</td>
                     <td>{{mwf.RentPrice}}</td>
                     <td>{{mwf.FineAmount}}</td>
-    
+
                     <!-- <td> -->
                     <!-- button -->
                     <!-- <button class="btn btn-sm btn-info" (click)="updateUser(usr.UserId)">Edit</button>

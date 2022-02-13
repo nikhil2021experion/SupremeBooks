@@ -21,6 +21,36 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
 
     this.loggedUser = localStorage.getItem("USERNAME");
+    this.mID  = +localStorage.getItem("CURRENTUSER");
+
+
+    //this.mID = this.route.snapshot.params['mID'];
+
+    //get book by id
+    if(this.mID != 0 || this.mID != null){
+      console.log(this.mID);
+      
+      //call method
+      this.libraryService.getMember(this.mID).subscribe(
+        response =>{
+          console.log(response);
+          
+          
+          
+
+   
+
+          
+
+          this.libraryService.formDataTwo = Object.assign({},response);
+          console.log(this.libraryService.formDataTwo);
+          
+        },
+        error =>{
+          console.log(error);
+        }
+      )
+    }
     
   }
 

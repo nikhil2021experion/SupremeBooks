@@ -4,9 +4,8 @@
         <h5>welcome : {{ loggedUser |uppercase }}</h5>
     </div>
     
-        <ul class="nav">
-            <li class="nav-item" style="margin-right: 20px; margin-left: 50%;">
-                <!-- <a class="nav-link" href="#" routerLink="/user">User</a> -->
+        <ul class="nav" style="display:-webkit-inline-flex;  margin-left: 70%; padding: 6px;">
+            <li class="nav-item" style="  margin-right: 20px;">                
                 <button class="btn btn-sm btn-warning" routerLink="/member">Go Back</button>
             </li>
             <li class="nav-item">
@@ -47,7 +46,7 @@
     <!-- Member Name -->
     <div class="form-group">
         <label>Member Name : </label>
-        <input type="number" name="MemberName"  #MemberName="ngModel" [(ngModel)]="libraryService.formData.MemberName" class="form-control" placeholder="Enter full name" minlength="6" maxlength="25" required 
+        <input type="text" name="MemberName"  #MemberName="ngModel" [(ngModel)]="loggedUser " class="form-control" placeholder="Enter full name" minlength="6" maxlength="25" required 
         [ngClass]="{'is-invalid': MemberName.touched && MemberName.invalid}">
         <!-- validation -->
         <div class="validation-errors" *ngIf="MemberName.touched && MemberName.invalid" style="color: red; text-align: left;">
@@ -73,31 +72,32 @@
     
     
     <!-- Created Date-->
-    <!-- <div class="form-group">
-        <label>Book Taken Date: </label> 
-        <input type="hidden" type="date" name="BookTakenDate"  #BookTakenDate="ngModel" [(ngModel)]="libraryService.formDataOne.BookTakenDate" class="form-control"   
+     <div class="form-group">
+        <!-- <label>Book Taken Date: </label>  -->
+        <input  type="hidden" name="BookTakenDate"  #BookTakenDate="ngModel" [(ngModel)]="libraryService.formDataOne.BookTakenDate" class="form-control"   
         [ngClass]="{'is-invalid': BookTakenDate.touched && BookTakenDate.invalid}" required >
-        validation
+        <!-- validation -->
         <div class="validation-errors" *ngIf="BookTakenDate.touched && BookTakenDate.invalid" style="color: red; text-align: left;">
             <div *ngIf="BookTakenDate.errors.required">
                 Book Taken Date is required!
             </div>
         </div>
-    </div> -->
+    </div> 
 
     
     <!-- IsActive -->
     <div class="form-group">
         <div class="form-check">
             <label class="form-check-label">In Active</label>
-            <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel" [(ngModel)]="libraryService.formData.IsActive" class="form-check-input" > 
+            <input type="checkbox" name="IsActive" id="IsActive" #IsActive="ngModel" [(ngModel)]="libraryService.formDataOne.IsActive" class="form-check-input" > 
             
         </div>
     </div>
     <!-- submit -->
     <br>
     <div class="form-group">
-        <button type="submit" class="btn btn-lg btn-primary form-control" [disabled]="!(form.valid && form.dirty)">Submit</button>
+        <button type="submit" class="btn btn-lg btn-primary form-control" >Apply</button>
+        <!-- [disabled]="!(form.valid && form.dirty)" -->
     </div>
 </form>
 

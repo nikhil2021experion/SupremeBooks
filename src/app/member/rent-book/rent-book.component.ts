@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class RentBookComponent implements OnInit {
 
   //declare variable bID
   bID:number;
-  
+  MemberID:number;
+  BookTakenDate:any;
   constructor(public libraryService : LibraryService, private authService: AuthService , 
     private route: ActivatedRoute,private router:Router,
     private toasterService: ToastrService) { }
@@ -24,6 +26,7 @@ export class RentBookComponent implements OnInit {
   ngOnInit(): void {
 
     this.loggedUser = localStorage.getItem("USERNAME");
+    this.MemberID  = +localStorage.getItem("CURRENTUSER");
 
     //this.libraryService.getBook(this.bID);
     
@@ -44,11 +47,20 @@ export class RentBookComponent implements OnInit {
       this.libraryService.getBook(this.bID).subscribe(
         response =>{
           console.log(response);
+          this.BookTakenDate = new Date();
+          console.log(this.BookTakenDate);
+          
+          //this.BookTakenDate = Date.now;
+
+          var datePipe = new DatePipe("en-UK");
+          let formatedDate:any = datePipe.transform(this.BookTakenDate,'yyyy-MM-dd');
+          response.BookTakenDate = formatedDate;
+          response.MemberId = this.MemberID;
 
           
 
-
           this.libraryService.formData = Object.assign({},response);
+          console.log(this.libraryService.formData);
           
         },
         error =>{
@@ -65,8 +77,10 @@ export class RentBookComponent implements OnInit {
   
   //Submit
   onSubmit(form:NgForm){
+    console.log("values in that form are...")
     console.log(form.value);
 
+    
     let addId = this.libraryService.formDataOne.RentId;
     // INSERT OR UPDATE
     if(addId == 0 || addId == null){
@@ -80,6 +94,7 @@ export class RentBookComponent implements OnInit {
    //insert Method
    insertRentRecord(form?: NgForm){
     console.log("renting a book ...");
+    console.log(form.value);
     this.libraryService.insertRent(form.value).subscribe(
       (result) => {
         console.log(result);

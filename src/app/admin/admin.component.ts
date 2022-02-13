@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { AuthService } from '../shared/auth.service';
 import { LibraryService } from '../shared/library.service';
 
@@ -14,7 +15,8 @@ export class AdminComponent implements OnInit {
   filter: string;
   loggedUser: string;
   bID:number;
-  constructor(private authService: AuthService , private router: Router,public  libraryService: LibraryService) { }
+  constructor(private authService: AuthService , private router: Router,public  libraryService: LibraryService,
+    private toasterService: ToastrService) { }
 
   ngOnInit(): void {
 
@@ -31,6 +33,21 @@ export class AdminComponent implements OnInit {
     //navigate to edit form with selected book details
 
     this.router.navigate(['book',bID]);
+  }
+
+  deleteBook(bID:number){
+    console.log("going to delete"+bID);
+    if(confirm('are you sure you want to DELETE this book?')){
+      this.libraryService.deleteBook(bID).subscribe(
+        response =>{
+          this.libraryService.bindListBooksDetails();
+          this.toasterService.success('book record has been deleted','BookRentalApp v2022');
+        },
+        error =>{
+          console.log(error);
+        }
+      );
+    }
   }
 
   //logout

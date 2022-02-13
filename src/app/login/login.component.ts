@@ -66,6 +66,7 @@ export class LoginComponent implements OnInit {
             
             localStorage.setItem("USERNAME",this.loginUser.MemberName);
             localStorage.setItem("ACCESSIBLE", this.loginUser.RoleId.toString());
+            localStorage.setItem("CURRENTUSER",this.loginUser.MemberId.toString());
             sessionStorage.setItem("JwtTOKEN",this.loginUser.Token);
             this.router.navigateByUrl('/admin');
           }
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
 
             localStorage.setItem("USERNAME",this.loginUser.MemberName);
             localStorage.setItem("ACCESSIBLE", this.loginUser.RoleId.toString());
+            localStorage.setItem("CURRENTUSER",this.loginUser.MemberId.toString());
             sessionStorage.setItem("JwtTOKEN",this.loginUser.Token);
             this.router.navigateByUrl('/member');
           }
@@ -82,6 +84,7 @@ export class LoginComponent implements OnInit {
 
             localStorage.setItem("USERNAME",this.loginUser.MemberName);
             localStorage.setItem("ACCESSIBLE", this.loginUser.RoleId.toString());
+            localStorage.setItem("CURRENTUSER",this.loginUser.MemberId.toString());
             sessionStorage.setItem("JwtTOKEN",this.loginUser.Token);
             this.router.navigateByUrl('/coordinator');
           }
